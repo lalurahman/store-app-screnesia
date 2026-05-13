@@ -92,7 +92,3 @@
 </body>
 
 </html>
-
-{{-- tugas --}}
-{{-- 1. buat partials untuk style, navbar, footer, dan script
-2. buat halaman about dan product, kemudian buat route dan controller untuk halaman tersebut --}}
