@@ -21,72 +21,34 @@
         <div class="container text-center">
             <h2 class="fw-bold text-danger">Our Best Sellers</h2>
             <div class="row mt-4 justify-content-center">
-                <div class="col-md-3">
-                    <div
-                        class="card"
-                        style="width: 18rem;"
-                    >
-                        <img
-                            src="image/baju.jpg"
-                            class="card-img-top"
-                            alt="Baju Kaos Hitam Polos"
-                            style="height: 200px; object-fit: cover;"
+                @forelse ($products as $item)
+                    <div class="col-md-3">
+                        <div
+                            class="card"
+                            style="width: 18rem;"
                         >
-                        <div class="card-body">
-                            <h5 class="card-title">Baju Kaos Hitam Polos</h5>
-                            <p class="text-muted mb-1">Baju</p>
-                            <p class="fw-bold text-success">Rp 100.000</p>
-                            <a
-                                href="#"
-                                class="btn btn-outline-danger"
-                            >Buy Now</a>
+                            <img
+                                src="{{ Storage::url('products/' . $item->image) }}"
+                                class="card-img-top"
+                                alt="{{ $item->name }}"
+                                style="height: 200px; object-fit: cover;"
+                            >
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $item->name }}</h5>
+                                <p class="text-muted mb-1">{{ $item->category->name }}</p>
+                                <p class="fw-bold text-success">Rp {{ number_format($item->price, 0, ',', '.') }}</p>
+                                <a
+                                    href="https://api.whatsapp.com/send?phone=085256999428&text=Hello%20Store-App%2C%20I%20am%20interested%20in%20buying%20{{ urlencode($item->name) }}"
+                                    class="btn btn-outline-danger"
+                                    target="_blank"
+                                >Buy Now</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div
-                        class="card"
-                        style="width: 18rem;"
-                    >
-                        <img
-                            src="image/celana.jpg"
-                            class="card-img-top"
-                            alt="Celana Jeans Biru"
-                            style="height: 200px; object-fit: cover;"
-                        >
-                        <div class="card-body">
-                            <h5 class="card-title">Celana Jeans Biru</h5>
-                            <p class="text-muted mb-1">Celana</p>
-                            <p class="fw-bold text-success">Rp 150.000</p>
-                            <a
-                                href="#"
-                                class="btn btn-outline-danger"
-                            >Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div
-                        class="card"
-                        style="width: 18rem;"
-                    >
-                        <img
-                            src="image/sepatu.jpg"
-                            class="card-img-top"
-                            alt="Sepatu Sneakers Putih"
-                            style="height: 200px; object-fit: cover;"
-                        >
-                        <div class="card-body">
-                            <h5 class="card-title">Sepatu Sneakers Putih</h5>
-                            <p class="text-muted mb-1">Sepatu</p>
-                            <p class="fw-bold text-success">Rp 200.000</p>
-                            <a
-                                href="#"
-                                class="btn btn-outline-danger"
-                            >Buy Now</a>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    <p class="text-muted">No products available.</p>
+                @endforelse
+
             </div>
         </div>
     </section>
